@@ -1,0 +1,47 @@
+/* Custom CSS for Navigation Bar */
+.navbar-custom {
+    background-color: #f8f9fa; /* Light background for navbar */
+    border-bottom: 2px solid #006633; /* GMU Green border */
+}
+
+.nav-button {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #006633; /* GMU Green border */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Box-shadow effect */
+}
+
+.nav-button:hover {
+    opacity: 0.8;
+}
+
+/* Navbar column styling */
+.navbar-custom .col {
+    padding: 20;
+}
+
+/* Heading Styles */
+.custom-heading {
+    color: #006633; /* GMU Green */
+    border: 5px solid #006633; /* GMU Green border */
+    padding: 50px;
+    box-shadow: 2px 2px 10px rgba(117, 229, 195, 0.2); /* Box-shadow effect */
+}
+
+    body {
+      font-family: "Inconsolata", sans-serif;
+      background-color: #f8f9fa;
+    }
+    .custom-btn {
+      background-color: #006633; /* GMU Green */
+      color: white;
+      border-radius: 10px;
+      padding: 10px 20px;
+      text-decoration: none;
+    }
+    .custom-btn:hover {
+      background-color: #004d26; /* Darker GMU Green */
+    }

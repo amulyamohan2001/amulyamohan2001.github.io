@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Department Info</title>
+    <!-- Link to local Bootstrap CSS for responsive design and styling -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to local custom CSS for additional styling -->
+    <link href="css/custom.css" rel="stylesheet">
+    <style>
+        /* Custom styles for the main heading */
+        h1 {
+            color: #006633; /* GMU Green */
+            border: 5px solid #006633;
+            text-align: center;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 3px 3px 13px rgba(37, 67, 52, 0.1);
+        }
+
+        /* Custom button styles for navigation */
+        .nav-button {
+            padding: 12px 20px; /* Adds padding around the button */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 16px; /* Font size for visibility */
+            font-weight: bold; /* Bold text */
+            text-align: center;
+            margin: 5px; /* Margin around buttons for spacing */
+        }
+
+        .btn-home {
+            background-color: #006633; /* Green for HOME */
+            color: white;
+        }
+
+        .btn-about {
+            background-color: #FFCC33; /* Yellow for ABOUT ME */
+            color: white;
+        }
+
+        .btn-cs {
+            background-color: #006633; /* Darker green for CS DEPARTMENT */
+            color: white;
+        }
+
+        .btn-survey {
+            background-color: #FFCC33; /* Bright yellow-orange for SURVEY FORM */
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="container mt-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid justify-content-center">
+                <!-- Home Link -->
+                <a href="index.html" class="btn nav-button btn-home">HOME</a>
+                <!-- About Me Link -->
+                <a href="index.html#about" class="btn nav-button btn-about">ABOUT ME</a>
+                <!-- CS Department Link -->
+                <a href="#menu" class="btn nav-button btn-cs">CS DEPARTMENT</a>
+                <!-- Survey Form Link -->
+                <a href="surveyform.html" class="btn nav-button btn-survey">SURVEY FORM</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Heading Section -->
+    <div class="container mt-5">
+        <!-- Main heading for the page -->
+        <h1 class="text-center custom-heading">CS DEPARTMENT INFORMATION</h1>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Department Description Section -->
+        <section id="about">
+            <p>
+                The <b>Department of Computer Science</b> at George Mason University is the largest in the College of Engineering and Computing, with nearly <b>80 full-time faculty members</b> and over <b>2200 undergraduate</b> and nearly <b>1200 graduate students.</b> It offers a variety of degree programs, including <b>Bachelor's, Master's, and Ph.D. programs</b>, with research strengths in all major areas of computing. The department is highly ranked, with a focus on cutting-edge research and interdisciplinary collaboration. Faculty excellence is reflected in numerous prestigious awards, including <b>NSF CAREER</b> and <b>AFOSR Young Investigator</b> awards, and includes several ACM and IEEE Fellows.
+            </p>
+            <p>
+                The department is committed to inclusiveness and accessibility, aligning with GMU's vision of increasing diversity in computing fields. It actively collaborates with industry, government, and educational institutions, with an External Advisory Board helping ensure programs remain relevant to workforce needs. Additionally, the department supports <b>"Computing for All,"</b> offering diverse courses for students of all backgrounds, and encourages partnerships in research and education with alumni, local industries, and global institutions.
+            </p>
+        </section>
+
+        <!-- MS Degree Programs Section -->
+        <section id="menu">
+            <h2>MS Degree Programs offered at GMU</h2>
+            <ol>
+                <!-- List of MS Degree Programs -->
+                <li>MS in Computer Science</li>
+                <li>MS in Software Engineering</li>
+                <li>MS in Information Systems</li>
+            </ol>
+        </section>
+
+        <!-- Required Courses Section -->
+        <section>
+            <h3 class="mt-5"><i>Required Courses</i></h3>
+
+            <!-- Required Courses for MS in Computer Science -->
+            <h4 class="mt-4">1. MS in Computer Science</h4>
+            <table class="table table-bordered" style="border: 2px solid #000; border-collapse: collapse;">
+                <thead style="background-color: #fff3cd;">
+                    <tr>
+                        <th style="border: 1px solid #000;">Course Number</th>
+                        <th style="border: 1px solid #000;">Course Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #000;">CS 583</td>
+                        <td style="border: 1px solid #000;">Analysis of Algorithms</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #000;">CS 531</td>
+                        <td style="border: 1px solid #000;">Computer Systems and Fundamentals of Systems Programming</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #000;">CS 530</td>
+                        <td style="border: 1px solid #000;">Mathematical Foundations of Computer Science</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Required Courses for MS in Software Engineering -->
+            <h4 class="mt-4">2. MS in Software Engineering</h4>
+            <table class="table table-bordered" style="border: 2px solid #000; border-collapse: collapse;">
+                <thead style="background-color: #fff3cd;">
+                    <tr>
+                        <th style="border: 1px solid #000;">Course Number</th>
+                        <th style="border: 1px solid #000;">Course Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #000;">SWE 619</td>
+                        <td style="border: 1px solid #000;">Object-Oriented Software Specification and Construction</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #000;">SWE 621</td>
+                        <td style="border: 1px solid #000;">Software Modeling and Architectural Design</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #000;">SWE 632</td>
+                        <td style="border: 1px solid #000;">User Interface Design and Development</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Required Courses for MS in Information Systems -->
+            <h4 class="mt-4">3. MS in Information Systems</h4>
+            <table class="table table-bordered" style="border: 2px solid #000; border-collapse: collapse;">
+                <thead style="background-color: #fff3cd;">
+                    <tr>
+                        <th style="border: 1px solid #000;">Course Number</th>
+                        <th style="border: 1px solid #000;">Course Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid #000;">COMP 502</td>
+                        <td style="border: 1px solid #000;">Mathematical Foundations of Computing I</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #000;">CS 550</td>
+                        <td style="border: 1px solid #000;">Database Systems</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #000;">INFS 622</td>
+                        <td style="border: 1px solid #000;">Information Systems Analysis and Design</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Custom styling for tables -->
+            <style>
+                table {
+                    background-image: linear-gradient(to right, #9bdd91, #e4fbee); /* Gradient background */
+                }
+            </style>
+        </section>
+
+    </div>
+
+    <!-- Local Bootstrap JavaScript for responsive components and interactions -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
