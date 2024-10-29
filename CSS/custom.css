@@ -3,6 +3,12 @@
     background-color: #f8f9fa; /* Light background for navbar */
     border-bottom: 2px solid #006633; /* GMU Green border */
 }
+/* Custom font for navigation links and brand */
+.navbar-nav .nav-link, .navbar-brand {
+  font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+  font-weight: bold; /* Optional: make the font bold */
+}
+
 
 .nav-button {
     display: block;
