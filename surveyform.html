@@ -1,3 +1,5 @@
+<!--Author: Amulya Mohan Kolakaluri -->
+<!-- G#: G01461327 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,6 @@
     <title>CS Department Survey</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <style>
         body {
             background-color: #f2f2f2; /* Light gray background */
@@ -42,9 +43,8 @@
         .custom-submit:hover {
             background-color: #004d00; /* Darker GMU Green */
         }
-
-        /* Greeting Section Styles */
-        #greeting {
+         /* Greeting Section Styles */
+         #greeting {
             text-align: center;
             margin-top: 20px;
             padding: 10px;
@@ -74,19 +74,20 @@
 </head>
 <body>
     <div id="greeting" class="mt-4"></div>
-    <!-- Heading -->
+     <!-- Heading -->
     <div class="container mt-4">
         <h1>CS Department Survey</h1>
     </div>
 
     <!-- Survey Form -->
     <div class="container form-container mt-4">
-        <form id="surveyForm" autocomplete="on">
-            <!-- Username -->
+        <form id="surveyForm">
+            <!-- Name -->
             <div class="mb-3">
-                <label for="username" class="form-label required">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter your Username" required autofocus>
+                <label for="name" class="form-label required">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your Name" required>
             </div>
+
             <!-- Address -->
             <div class="row">
                 <div class="col-md-4">
@@ -104,8 +105,8 @@
                 </div>              
             </div>
             <div class="mb-3">
-                <label for="street" class="form-label required">Street Address</label>
-                <input type="text" class="form-control" id="street" placeholder="123 Main St" required>
+                <label for="address" class="form-label required">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="Enter your Address" required>
             </div>
            
             <!-- Contact Information -->
@@ -119,9 +120,8 @@
                     <input type="email" class="form-control" id="email" placeholder="example@example.com" required>
                 </div>
             </div>
-
-            <!-- Data Input Field -->
-            <div class="mb-3">
+             <!-- Data Input Field -->
+             <div class="mb-3">
                 <label for="data" class="form-label required">Data (10 numbers, 1-100)</label>
                 <input type="text" class="form-control" id="data" placeholder="Enter 10 numbers separated by commas" required onblur="calculateAverageAndMax()">
             </div>
@@ -144,7 +144,7 @@
                 </div>
             </div>
 
-            <!-- Checkboxes for Campus Feedback -->
+            <!-- Checkboxes for Feedback -->
             <div class="mt-4">
                 <label class="form-label">What did you like most about the campus?</label>
                 <div class="form-check">
@@ -188,14 +188,10 @@
                     <input type="radio" class="form-check-input" name="interest" id="internet">
                     <label for="internet" class="form-check-label">Internet</label>
                 </div>
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" name="interest" id="other">
-                    <label for="other" class="form-check-label">Other</label>
-                </div>
             </div>
 
-            <!-- Text Area for Additional Comments -->
-            <div class="mt-4">
+             <!-- Text Area for Additional Comments -->
+             <div class="mt-4">
                 <label for="comments" class="form-label">Additional Comments</label>
                 <textarea class="form-control" id="comments" rows="4" placeholder="Questions? Comments? Concerns? Let us know!"></textarea>
             </div>
@@ -233,23 +229,72 @@
                 </select>
             </div>
 
-            <!-- Custom Submit Button -->
-            <button type="submit" class="btn custom-submit mt-4">Submit</button>
+            <!-- Buttons for Submit and Reset -->
+            <div class="mt-4">
+                <button type="submit" class="btn custom-submit">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
         </form>
     </div>
 
-    <!-- Bootstrap JS (Optional) -->
+    <!-- JavaScript for Form Validation and Functionality -->
+    
+         <!-- Bootstrap JS (Optional) -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script>
-        // Function to display greeting message with student's name
-        window.onload = function() {
-            var studentName = "Amulya Kolakaluri"; // Replace with the actual student's name
-            var currentDate = new Date().toLocaleDateString();
-            var greetingMessage = `Hello, ${studentName}! Today's date is ${currentDate}.`;
-            var surveyLink = '<a href="https://cs.gmu.edu">Visit CS Department</a>';
-            document.getElementById("greeting").innerHTML = greetingMessage + " " + surveyLink;
-        };
+        // Function to get a cookie by name
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null; // Return null if cookie not found
+        }
+
+        // Function to set a cookie with an expiration
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = `${name}=${value}; ${expires}; path=/`;
+        }
+
+        // Function to prompt for the user's name and set the cookie
+        function promptForName() {
+            const name = prompt("Please enter your name:");
+            if (name) {
+                setCookie("userName", name, 7); // Set cookie with 7-day expiration
+                location.reload(); // Reload the page to show the greeting
+            }
+        }
+
+        // Function to display the greeting based on the time of day
+        function greetUser() {
+            const userName = getCookie("userName");
+            const greetingElement = document.getElementById("greeting");
+
+            const currentHour = new Date().getHours();
+            let greeting;
+            if (currentHour < 12) {
+                greeting = "Good Morning";
+            } else if (currentHour < 18) {
+                greeting = "Good Afternoon";
+            } else {
+                greeting = "Good Evening";
+            }
+
+            if (userName) {
+                // Display the greeting with the user’s name
+                greetingElement.innerHTML = `${greeting}, ${userName}! Welcome to SWE642 Survey.
+                                             <a href="#" onclick="promptForName()">Not you?</a>`;
+            } else {
+                // Prompt for name only if no cookie is set
+                promptForName();
+            }
+        }
+
+        // Run the greetUser function on page load
+        document.addEventListener("DOMContentLoaded", greetUser);
 
         // Function to calculate average and maximum of 10 numbers
         function calculateAverageAndMax() {
@@ -269,8 +314,9 @@
             }
         }
 
-        // Fetch City and State based on ZIP code
-        function fetchCityState() {
+
+         // Fetch City and State based on ZIP code
+         function fetchCityState() {
             const zipInput = document.getElementById("zip");
             const cityInput = document.getElementById("city");
             const stateInput = document.getElementById("state");
@@ -306,6 +352,69 @@
         }
 
         fetchCityState();
+        // Form submission validation
+        document.getElementById("surveyForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Collect form values
+            const name = document.getElementById("name").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const telephone = document.getElementById("telephone").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const likes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const interest = document.querySelector('input[name="interest"]:checked');
+            let errors = [];
+
+            // Validate Name: Only alphabets
+            if (!/^[a-zA-Z\s]+$/.test(name)) {
+                errors.push("Name must contain only alphabets.");
+                document.getElementById("name").value = ""; // Clear error field
+            }
+
+            // Validate Address: Alphanumeric and appropriate characters
+            if (!/^[a-zA-Z0-9\s.,-]+$/.test(address)) {
+                errors.push("Address can only contain alphanumeric characters, spaces, and symbols like ., -.");
+                document.getElementById("address").value = ""; // Clear error field
+            }
+
+            // Validate that at least two checkboxes are checked
+            if (likes.length < 2) {
+                errors.push("Please select at least two options about what you liked most about the campus.");
+            }
+
+            // Validate radio button selection
+            if (!interest) {
+                errors.push("Please select an option for how you became interested in the university.");
+            }
+
+            // Validate Email format
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                errors.push("Please enter a valid email address.");
+                document.getElementById("email").value = ""; // Clear error field
+            }
+
+            // Show consolidated error message
+            if (errors.length > 0) {
+                alert("Please correct the following errors:\n- " + errors.join("\n- "));
+            } else {
+                // If no errors, submit the form
+                alert("Form submitted successfully!"); // Add a message for successful submission
+                this.submit();
+            }
+        });
+
+        // Reset button functionality
+        document.querySelector("button[type='reset']").addEventListener("click", function () {
+            // Clear all input fields
+            document.getElementById("name").value = "";
+            document.getElementById("address").value = "";
+            document.getElementById("telephone").value = "";
+            document.getElementById("email").value = "";
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+            const radioButtons = document.querySelectorAll('input[name="interest"]');
+            radioButtons.forEach(radio => radio.checked = false);
+        });
     </script>
 </body>
 </html>
