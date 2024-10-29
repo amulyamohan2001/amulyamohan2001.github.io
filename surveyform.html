@@ -38,14 +38,42 @@
             background-color: #006633; /* GMU Green */
             color: white;
         }
-        
+
         .custom-submit:hover {
             background-color: #004d00; /* Darker GMU Green */
+        }
+
+        /* Greeting Section Styles */
+        #greeting {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 1.5rem;
+            color: #006633; /* GMU Green */
+            border: 2px solid #006633;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #e9f5ea;
+        }
+
+        #greeting a {
+            color: #004d00; /* Darker GMU Green */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #greeting a:hover {
+            text-decoration: underline;
+        }
+
+        .invalid-zip {
+            color: red;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
-
+    <div id="greeting" class="mt-4"></div>
     <!-- Heading -->
     <div class="container mt-4">
         <h1>CS Department Survey</h1>
@@ -53,32 +81,33 @@
 
     <!-- Survey Form -->
     <div class="container form-container mt-4">
-        <form autocomplete="on">
+        <form id="surveyForm" autocomplete="on">
             <!-- Username -->
             <div class="mb-3">
                 <label for="username" class="form-label required">Username</label>
                 <input type="text" class="form-control" id="username" placeholder="Enter your Username" required autofocus>
             </div>
             <!-- Address -->
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="zip" class="form-label required">ZIP</label>
+                    <input type="text" class="form-control" id="zip" placeholder="ZIP Code" required>
+                    <span id="invalid-zip" class="invalid-zip"></span>
+                </div>
+                <div class="col-md-4">
+                    <label for="city" class="form-label required">City</label>
+                    <input type="text" class="form-control" id="city" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label for="state" class="form-label required">State</label>
+                    <input type="text" class="form-control" id="state" readonly>
+                </div>              
+            </div>
             <div class="mb-3">
                 <label for="street" class="form-label required">Street Address</label>
                 <input type="text" class="form-control" id="street" placeholder="123 Main St" required>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="city" class="form-label required">City</label>
-                    <input type="text" class="form-control" id="city" placeholder="City" required>
-                </div>
-                <div class="col-md-3">
-                    <label for="state" class="form-label required">State</label>
-                    <input type="text" class="form-control" id="state" placeholder="State" required>
-                </div>
-                <div class="col-md-3">
-                    <label for="zip" class="form-label required">ZIP</label>
-                    <input type="text" class="form-control" id="zip" placeholder="ZIP Code" required>
-                </div>
-            </div>
-
+           
             <!-- Contact Information -->
             <div class="row mt-3">
                 <div class="col-md-6">
@@ -88,6 +117,22 @@
                 <div class="col-md-6">
                     <label for="email" class="form-label required">E-mail</label>
                     <input type="email" class="form-control" id="email" placeholder="example@example.com" required>
+                </div>
+            </div>
+
+            <!-- Data Input Field -->
+            <div class="mb-3">
+                <label for="data" class="form-label required">Data (10 numbers, 1-100)</label>
+                <input type="text" class="form-control" id="data" placeholder="Enter 10 numbers separated by commas" required onblur="calculateAverageAndMax()">
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="average" class="form-label">Average</label>
+                    <input type="text" class="form-control" id="average" placeholder="Average" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="maximum" class="form-label">Maximum</label>
+                    <input type="text" class="form-control" id="maximum" placeholder="Maximum" readonly>
                 </div>
             </div>
 
@@ -176,25 +221,91 @@
                 <input type="text" class="form-control mt-2" placeholder="Year" required>
             </div>
 
-            <!-- Dropdown for Likelihood of Recommending -->
+            <!-- Dropdown for Likelihood of Recommending the University -->
             <div class="mt-4">
-                <label for="recommend" class="form-label required">Likelihood of recommending George Mason University to others</label>
+                <label for="recommend" class="form-label required">How likely are you to recommend this university?</label>
                 <select class="form-select" id="recommend" required>
-                    <option value="">Select an option</option>
-                    <option value="very_likely">Very Likely</option>
-                    <option value="likely">Likely</option>
-                    <option value="unlikely">Unlikely</option>
+                    <option value="">Select</option>
+                    <option value="Very Likely">Very Likely</option>
+                    <option value="Likely">Likely</option>
+                    <option value="Unlikely">Unlikely</option>
+                    <option value="Very Unlikely">Very Unlikely</option>
                 </select>
             </div>
 
-            <!-- Submit Button -->
-            <div class="mt-4">
-                <button type="submit" class="btn custom-submit">Submit Survey</button>
-            </div>
+            <!-- Custom Submit Button -->
+            <button type="submit" class="btn custom-submit mt-4">Submit</button>
         </form>
     </div>
 
-    <!-- Bootstrap script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Function to display greeting message with student's name
+        window.onload = function() {
+            var studentName = "Amulya Kolakaluri"; // Replace with the actual student's name
+            var currentDate = new Date().toLocaleDateString();
+            var greetingMessage = `Hello, ${studentName}! Today's date is ${currentDate}.`;
+            var surveyLink = '<a href="https://cs.gmu.edu">Visit CS Department</a>';
+            document.getElementById("greeting").innerHTML = greetingMessage + " " + surveyLink;
+        };
+
+        // Function to calculate average and maximum of 10 numbers
+        function calculateAverageAndMax() {
+            var dataInput = document.getElementById('data').value;
+            var numbers = dataInput.split(',').map(Number);
+
+            if (numbers.length === 10 && numbers.every(num => num >= 1 && num <= 100)) {
+                var total = numbers.reduce((acc, num) => acc + num, 0);
+                var average = total / 10;
+                var maximum = Math.max(...numbers);
+
+                document.getElementById('average').value = average.toFixed(2);
+                document.getElementById('maximum').value = maximum;
+            } else {
+                alert('Please enter exactly 10 numbers between 1 and 100, separated by commas.');
+                document.getElementById('data').focus();
+            }
+        }
+
+        // Fetch City and State based on ZIP code
+        function fetchCityState() {
+            const zipInput = document.getElementById("zip");
+            const cityInput = document.getElementById("city");
+            const stateInput = document.getElementById("state");
+            const invalidZipMessage = document.getElementById("invalid-zip");
+
+            zipInput.addEventListener("blur", function () {
+                const zipCode = zipInput.value.trim();
+                if (/^\d{5}$/.test(zipCode)) {
+                    const apiUrl = `https://api.zippopotam.us/us/${zipCode}`;
+                    fetch(apiUrl)
+                        .then(response => {
+                            if (!response.ok) throw new Error('Invalid ZIP code');
+                            return response.json();
+                        })
+                        .then(data => {
+                            const place = data.places[0];
+                            cityInput.value = place["place name"];
+                            stateInput.value = place["state abbreviation"];
+                            invalidZipMessage.innerText = '';
+                        })
+                        .catch(error => {
+                            console.error("Error fetching city and state:", error);
+                            cityInput.value = '';
+                            stateInput.value = '';
+                            invalidZipMessage.innerText = 'Invalid ZIP Code';
+                        });
+                } else {
+                    cityInput.value = '';
+                    stateInput.value = '';
+                    invalidZipMessage.innerText = 'Invalid ZIP Code';
+                }
+            });
+        }
+
+        fetchCityState();
+    </script>
 </body>
 </html>
